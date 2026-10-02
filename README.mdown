@@ -10,7 +10,7 @@
 
 * As of Oct 1 2026, the `Lists Tool` is currently broken. It is intermittently and unpredictably doubling inventory for many users.
 * Quicklist works by sending a CSV to the `Lists Tool` on TCGplayer.com, which sends that data to Staging.
-* TCGPlayer is currently recommending users avoid the `Lists Tool` and upload CSV directly to the `Pricing Tool`
+* TCGPlayer is currently recommending users avoid the `Lists Tool` and upload CSV directly to the `Pricing Tool`.
 * Quicklist CSV exports are `SKU ID` and `Qty` only. This is not enough information for CSV upload.
 * In order to still use Quicklist but bypass the `Lists Tool`, we must convert Quicklist CSV to a "real" CSV. 
 * This is basically what the Roca Sorter does.
@@ -36,21 +36,15 @@ Note 1: The database is simply a catalog lookup containing Pokémon and Magic pr
 
 Note 2: If you don't trust the database file, you can create your own using the notes below.
 
-## HUH
-
-* I wrote this script myself, so I can explain everything in it. It was not vibe coded.
-* THIS SCRIPT USES 9999 AS A PLACEHOLDER PRICE. MAKE SURE YOU USE THE "CHANNEL PRICING TOOL" OR SOME OTHER MEANS OF UPDATING PRICES BEFORE PUSHING YOUR CSV LIVE.
-
 ## ⚠️ IMPORTANT THANGS ⚠️ 
 
-This script intentionally uses 9999 as a placeholder price. DO NOT UPLOAD THE RESULTING CSV WITHOUT FIRST UPDATING YOUR PRICES. You can use the "Channel Pricing Tool", do it by hand, or really anything else. JUST DON'T PUMP ALL YOUR CARDS LIVE WITH A $10K PRICE TAG.
-
+* This script intentionally uses 9999 as a placeholder price. DO NOT UPLOAD THE RESULTING CSV WITHOUT FIRST UPDATING YOUR PRICES. You can use the "Channel Pricing Tool", do it by hand, or really anything else. JUST DON'T PUMP ALL YOUR CARDS LIVE WITH A $10K PRICE TAG.
+* I wrote this script myself, so I can explain everything in it. It was not vibe coded.
 
 ## WARRANTY 
 
-There is no warranty. You need to check your work. Meaning, you need to check my work. 
-
-I am an idiot and you are an idiot if you think I'm kidding about being an idiot.
+* There is no warranty. You need to check your work. Meaning, you need to check my work. 
+* I am an idiot and you are an idiot if you think I'm kidding about being an idiot.
 
 ## Notes for me
 
