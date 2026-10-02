@@ -2,9 +2,9 @@
 
 ## WTF
 
-Quicklist CSV exports -- by design -- are not formatted correctly for direct upload to TCGPlayer.
-
-This script will convert your Quicklist CSV into something that will work.
+* Quicklist CSV exports -- by design -- are not formatted correctly for direct upload to TCGPlayer.
+* This script will convert your Quicklist CSV into something that will work in the `Pricing Tool`.
+* THIS IS NOT A PRICING TOOL. A placeholder price of 9999 is used in the resulting file. Make sure you update pricing.
 
 ## WHY
 
