@@ -2,20 +2,22 @@
 
 ## WTF
 
-If you export from Quicklist to CSV and try to upload that CSV to TCGPlayer it _will not_ work.
+Quicklist CSV exports -- by design -- are not formatted correctly for direct upload to TCGPlayer.
 
-This script will turn your Quicklist CSV into something that _will_ work.
+This script will convert your Quicklist CSV into something that will work.
 
 ## WHY
 
-* Quicklist sends data to the `Lists Tool` on TCGplayer.com and then heads to Staging from there.
-* As of Oct 1 2026, the `Lists Tool` is currently broken, and intermittently and unpredictably doubling inventory for many users.
-* TCGPlayer is currently recommending users upload via CSV in the Pricing Tab and avoid the `Lists` tool.
-* Quicklist does not export to a valid CSV for this purpose because it just gives you TCGPlayer ID (aka SkuId) and the quantity you scanned.
+* As of Oct 1 2026, the `Lists Tool` is currently broken. It is intermittently and unpredictably doubling inventory for many users.
+* Quicklist works by sending a CSV to the `Lists Tool` on TCGplayer.com, which sends that data to Staging.
+* TCGPlayer is currently recommending users avoid the `Lists Tool` and upload CSV directly to the `Pricing Tool`
+* Quicklist CSV exports are `SKU ID` and `Qty` only. This is not enough information for CSV upload.
+* In order to still use Quicklist but bypass the `Lists Tool`, we must convert Quicklist CSV to a "real" CSV. 
+* This is basically what the Roca Sorter does.
 
 ## YES I KNOW
 
-* I know you can do VLOOKUP or XLOOKUP in a spreadsheet tool. I did not want to do that with 1MM+ rows in an active spreadsheet.
+* VLOOKUP or XLOOKUP in a spreadsheet tool is an option.
 * Nobody likes PHP.
 * You would have done this differently. 
 * You love me anyway.
@@ -28,7 +30,7 @@ Using this script requires:
 2) PHP installed locally on your machine
 3) PDO supported by your PHP install
 4) SQLite supported by your PHP install
-5) The following database file in the same folder: https://s.stashr.wtf/1bVGzh7d (~92MB, expires Halloween 2026. Very spooky.)
+5) The following database file in the same folder: https://www.mediafire.com/file/5u8lplo5kadmkj2/catalog.db/file (~86MB)
 
 Note 1: The database is simply a catalog lookup containing Pokémon and Magic product metadata. Pricing data has been removed.
 Note 2: If you don't trust the database file, you can create your own using the notes below.
@@ -64,7 +66,6 @@ sqlite3 mydatabase.db
 .mode csv
 .import filename.csv tablename
 .quit
-
 ```
 
 If you're creating this DB file yourself, you need to know the following:

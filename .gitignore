@@ -1,3 +1,4 @@
+.DS_Store
 *.csv
 *.db
 !quicklist-export-example.csv

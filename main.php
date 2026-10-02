@@ -36,12 +36,36 @@ class Quicklist
 
     }
 
+    // we're not allowed to upload multiple identical cards separately via CSV, so we must merge them into one row
+    public function dedupeQuicklistRows()
+    {
+    	$dedupedArray = array();
+
+    	foreach ($this->quicklistRows as $row)
+    	{
+    		$_skuId = $row[0];
+    		$_qty   = (int) $row[1];
+
+    		if (isset($dedupedArray[$_skuId]))
+    		{
+    			$dedupedArray[$_skuId] += $_qty;
+    		}
+    		else
+    		{
+    			$dedupedArray[$_skuId] = $_qty;
+    		}
+    	}
+
+    	$this->quicklistRows = $dedupedArray;
+
+    }
+
     public function compileCSV()
     {
-    	foreach($this->quicklistRows as $row)
+    	foreach($this->quicklistRows as $skuId => $qty)
     	{
-    		$qlSkuId = $row[0];
-    		$qlQty = $row[1];
+    		//$qlSkuId = $row[0];
+    		//$qlQty = $row[1];
     		
 			$stmt = $this->db->prepare("
 			    SELECT *
@@ -49,7 +73,7 @@ class Quicklist
 			    WHERE `TCGPlayer Id` = :skuId
 			");
 
-			$stmt->execute(['skuId' => $qlSkuId]);
+			$stmt->execute(['skuId' => $skuId]);
 
 			$query = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -64,7 +88,7 @@ class Quicklist
 				$query["Number"],
 				$query["Rarity"],
 				$query["Condition"],
-				"0","0","0","0","0",$qlQty,"9999","0","9999","");
+				"0","0","0","0","0",$qty,"9999","0","9999","");
 
 			$this->csvRows[] = $_compiledRow;	
     	}
@@ -87,6 +111,7 @@ class Quicklist
 }
 
 $ql = new Quicklist($argv[1]);
+$ql->dedupeQuicklistRows();
 $ql->compileCSV();
 $ql->exportCSV();
             
