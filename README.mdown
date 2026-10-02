@@ -18,6 +18,7 @@
 ## YES I KNOW
 
 * VLOOKUP or XLOOKUP in a spreadsheet tool is an option.
+* The README is longer than the code.
 * Nobody likes PHP.
 * You would have done this differently. 
 * You love me anyway.
@@ -38,7 +39,8 @@ Note 2: If you don't trust the database file, you can create your own using the 
 
 ## ⚠️ IMPORTANT THANGS ⚠️ 
 
-* This script intentionally uses 9999 as a placeholder price. DO NOT UPLOAD THE RESULTING CSV WITHOUT FIRST UPDATING YOUR PRICES. You can use the "Channel Pricing Tool", do it by hand, or really anything else. JUST DON'T PUMP ALL YOUR CARDS LIVE WITH A $10K PRICE TAG.
+* This script intentionally uses 9999 as a placeholder price. 
+* DO NOT UPLOAD THE RESULTING CSV WITHOUT FIRST UPDATING YOUR PRICES. You can use the "Channel Pricing Tool", do it by hand, or really anything else. JUST DON'T PUMP ALL YOUR CARDS LIVE WITH A $10K PRICE TAG.
 * I wrote this script myself, so I can explain everything in it. It was not vibe coded.
 
 ## WARRANTY 
