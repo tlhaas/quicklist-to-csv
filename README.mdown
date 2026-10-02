@@ -36,7 +36,7 @@ Note 1: The database is simply a catalog lookup containing Pokémon and Magic pr
 
 Note 2: If you don't trust the database file, you can create your own using the notes below.
 
-## WHERE
+## HUH
 
 * I wrote this script myself, so I can explain everything in it. It was not vibe coded.
 * THIS SCRIPT USES 9999 AS A PLACEHOLDER PRICE. MAKE SURE YOU USE THE "CHANNEL PRICING TOOL" OR SOME OTHER MEANS OF UPDATING PRICES BEFORE PUSHING YOUR CSV LIVE.
