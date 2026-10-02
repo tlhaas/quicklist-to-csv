@@ -1,0 +1,3 @@
+*.csv
+*.db
+!quicklist-export-example.csv
