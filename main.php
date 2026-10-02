@@ -8,21 +8,14 @@ class Quicklist
 
 	public function __construct(string $csvFile)
     {
-
     	// read CSV
-        if (!is_readable($csvFile)) {
-            throw new RuntimeException("CSV file not readable: $csvFile");
-        }
+        if (!is_readable($csvFile)) { throw new RuntimeException("CSV file not readable: $csvFile"); }
 
         $handle = fopen($csvFile, 'r');
-        if ($handle === false) {
-            throw new RuntimeException("Failed to open CSV file: $csvFile");
-        }
+        if ($handle === false) { throw new RuntimeException("Failed to open CSV file: $csvFile"); }
 
         // no headers, so just pump each row to the object
-        while (($row = fgetcsv($handle, 0, ',', '"', '\\')) !== false) {
-            $this->quicklistRows[] = $row;
-        }
+        while (($row = fgetcsv($handle, 0, ',', '"', '\\')) !== false) { $this->quicklistRows[] = $row; }
 
         fclose($handle);
 
@@ -33,7 +26,6 @@ class Quicklist
         // initalize db
         $this->db = new PDO('sqlite:catalog.db');
 		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     }
 
     // we're not allowed to upload multiple identical cards separately via CSV, so we must merge them into one row
@@ -57,16 +49,12 @@ class Quicklist
     	}
 
     	$this->quicklistRows = $dedupedArray;
-
     }
 
     public function compileCSV()
     {
     	foreach($this->quicklistRows as $skuId => $qty)
-    	{
-    		//$qlSkuId = $row[0];
-    		//$qlQty = $row[1];
-    		
+    	{    		
 			$stmt = $this->db->prepare("
 			    SELECT *
 			    FROM catalog
@@ -103,9 +91,7 @@ class Quicklist
         }
 
         // Write each row
-        foreach ($this->csvRows as $row) {
-            fputcsv($fp, $row, ',', '"', '\\');
-        }
+        foreach ($this->csvRows as $row) { fputcsv($fp, $row, ',', '"', '\\'); }
         fclose($fp);
     }
 }
