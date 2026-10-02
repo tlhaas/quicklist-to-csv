@@ -33,6 +33,7 @@ Using this script requires:
 5) The following database file in the same folder: https://www.mediafire.com/file/5u8lplo5kadmkj2/catalog.db/file (~86MB)
 
 Note 1: The database is simply a catalog lookup containing Pokémon and Magic product metadata. Pricing data has been removed.
+
 Note 2: If you don't trust the database file, you can create your own using the notes below.
 
 ## WHERE
