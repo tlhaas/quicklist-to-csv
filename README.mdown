@@ -11,7 +11,7 @@
 * As of 2026-10-01, the `Lists Tool` is currently broken. It is intermittently and unpredictably doubling inventory for many users.
 * Quicklist works by sending a CSV to the `Lists Tool` on TCGplayer.com, which sends that data to Staging.
 * TCGPlayer is currently recommending users avoid the `Lists Tool` and upload CSV directly to the `Pricing Tool`.
-* Quicklist CSV exports are `SKU ID` and `Qty` only. This is not enough information for CSV upload.
+* Quicklist CSV exports have 3 columns: `????` ,`SKU ID` and `Qty` only. This is not enough information for CSV upload. ()
 * In order to still use Quicklist but bypass the `Lists Tool`, we must convert Quicklist CSV to a "real" CSV. 
 * This is basically what the Roca Sorter does.
 

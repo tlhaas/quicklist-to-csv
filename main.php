@@ -15,7 +15,15 @@ class Quicklist
         if ($handle === false) { throw new RuntimeException("Failed to open CSV file: $csvFile"); }
 
         // no headers, so just pump each row to the object
-        while (($row = fgetcsv($handle, 0, ',', '"', '\\')) !== false) { $this->quicklistRows[] = $row; }
+        while (($row = fgetcsv($handle, 0, ',', '"', '\\')) !== false) 
+        { 
+        	// throw away empty lines in CSV
+        	if (empty(array_filter($row)))
+		    {
+		        continue;
+		    }
+        	$this->quicklistRows[] = $row; 
+        }
 
         fclose($handle);
 
@@ -33,10 +41,13 @@ class Quicklist
     {
     	$dedupedArray = array();
 
+    	echo "Num row before: " . count($this->quicklistRows) . " rows.\n";
+
     	foreach ($this->quicklistRows as $row)
     	{
-    		$_skuId = $row[0];
-    		$_qty   = (int) $row[1];
+    		// first column is some stupid thing i dunno what it is
+    		$_skuId = $row[1];
+    		$_qty   = (int) $row[2];
 
     		if (isset($dedupedArray[$_skuId]))
     		{
@@ -47,8 +58,10 @@ class Quicklist
     			$dedupedArray[$_skuId] = $_qty;
     		}
     	}
-
     	$this->quicklistRows = $dedupedArray;
+
+    	echo "Num row before: " . count($this->quicklistRows) . " after.\n";
+    	
     }
 
     public function compileCSV()
