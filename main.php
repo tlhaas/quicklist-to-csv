@@ -22,7 +22,6 @@ class Quicklist
         // no headers, so just pump each row to the object
         while (($row = fgetcsv($handle, 0, ',', '"', '\\')) !== false) {
             $this->quicklistRows[] = $row;
-
         }
 
         fclose($handle);
@@ -37,15 +36,8 @@ class Quicklist
 
     }
 
-    public function dumpRows()
-    {
-    	var_dump($this->quicklistRows);
-    	echo "Num rows: " . count($this->quicklistRows) . "\n";
-    }
-
     public function compileCSV()
     {
-
     	foreach($this->quicklistRows as $row)
     	{
     		$qlSkuId = $row[0];
@@ -62,7 +54,7 @@ class Quicklist
 			$query = $stmt->fetch(PDO::FETCH_ASSOC);
 
 			// only required fields are ID and condition, but we're putting more in for fun
-			// prices must be greater than 0, so we're defaulting to 9999 in case you forget to update this prices yourself
+			// prices must be greater than 0, so we're defaulting to 9999 in case you forget to update the prices yourself
 			$_compiledRow = array(
 				$query["TCGplayer Id"],
 				$query["Product Line"],
@@ -74,10 +66,8 @@ class Quicklist
 				$query["Condition"],
 				"0","0","0","0","0",$qlQty,"9999","0","9999","");
 
-			$this->csvRows[] = $_compiledRow;
-			
+			$this->csvRows[] = $_compiledRow;	
     	}
-    	var_dump($this->csvRows[0]);
     }
 
     public function exportCSV()
@@ -88,20 +78,16 @@ class Quicklist
             throw new RuntimeException("Failed to open file for writing: $filename");
         }
 
-        // Write each card
+        // Write each row
         foreach ($this->csvRows as $row) {
             fputcsv($fp, $row, ',', '"', '\\');
         }
         fclose($fp);
     }
-
 }
 
-
 $ql = new Quicklist($argv[1]);
-
 $ql->compileCSV();
 $ql->exportCSV();
             
-
 ?>
